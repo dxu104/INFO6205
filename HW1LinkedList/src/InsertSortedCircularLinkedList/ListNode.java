@@ -6,7 +6,8 @@ class Node {
     public int val;
     public Node next;
 
-    public Node() {}
+    public Node() {
+    }
 
     public Node(int _val) {
         val = _val;
@@ -18,70 +19,35 @@ class Node {
     }
 
 
-
-
-class Solution {
-    public Node insert(Node head, int insertVal) {
-        if (head == null) {
-            head.val = insertVal;
-            head.next = null;
-            return head;
-        }
-        if (head.next == null) {
-            Node cur = head;
-            Node tail = null;
-            cur.next = tail;
-            tail.val = insertVal;
-            tail.next = null;
-            return head;
-        }
-
-        Node cur = head;
-        Node prev = null;
-        Node nextNode=null;
-        cur.next = nextNode;
-        //Conner Case
-        //find the location of max value in a linkedList
-        Node MaxNode = head;
-        int max = MaxNode.val;
-        int i;
-        for (i = 0; max <= MaxNode.next.val; i++) {
-            max = MaxNode.val;
-
-            MaxNode = MaxNode.next;
-        }//right now MaxNode located at  ListNode which has maxval
-        Node MinNode = MaxNode.next;
-        int min = MaxNode.next.val;
-
-        Node insert = null;
-        insert.val = insertVal;
-        Node MediumNode = MinNode;
-
-
-        if (insertVal >= max && insertVal <= min) {
-            MaxNode.next = insert;
-            insert.next = MinNode;
-            return head;
-        } else {
-            while (MediumNode.val < insertVal) {
-
-                prev = MediumNode;
-                MediumNode = MediumNode.next;
-
+    class Solution {
+        public Node insert(Node head, int insertVal) {
+            Node node = new Node(insertVal);
+            if (head == null) {
+                node.next = node;
+                return node;//stop the insert method.
             }
-            Node Next = MediumNode.next;
-            prev.next = insert;
-            insert.next = next;
+            Node cur = head;
+            //How we can traverse circular  Linked-List just one time insread of repeatedly
+            while (cur.next != head) {
+                //when insertNode found cur node moved to a corrected location, it will insert itself.
+                //for record the place of cur node to insert insertNode, we will break.
+                //the first correct condition will be below one.
+                if (cur.val <= insertVal && insertVal <= cur.next.val) {
+                    break;
+                    // second correct condition will be below one
+                } else if (cur.next.val < cur.val) {
+                    if (insertVal <= cur.next.val || insertVal >= cur.val) {
+                        break;
+                    }
+                }
+                cur = cur.next; //move the cur node to traverse whole list.
+            }
+            Node nextNode = cur.next;// we must store the node of cur.next as a new node called nextNode.
+            cur.next = node;// connect cur node to insertNode.
+            node.next = nextNode;//connect insertNode to nextNode
             return head;
         }
 
     }
-}
-    }
-
-    // 1st find a location which this location's val less than insertVal and this nextNode.val large is also less insertVal
-
-
-
 
 
