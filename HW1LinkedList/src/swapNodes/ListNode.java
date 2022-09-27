@@ -19,7 +19,7 @@ public class ListNode {
     }
 }
 
-class swapNodes {
+class Solution {
     public ListNode swapNodes(ListNode head, int k) {
 
         ListNode tail = head;
@@ -28,7 +28,7 @@ class swapNodes {
         for (n = 1; tail.next != null; n++) {
             tail = tail.next;
         }
-        //find the location of kth nodes(1-indexed) needed to be swapped.
+        //Find the location of kth nodes(1-indexed) needed to be swapped.
         ListNode frontCur = head;
         int i;
         for (i = 1; i < k; i++) {

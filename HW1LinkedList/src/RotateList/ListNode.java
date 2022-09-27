@@ -16,15 +16,16 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
+}
 
-    class RotateList {
+    class Solution {
         public ListNode rotateRight(ListNode head, int k) {
             //Conner Case
             if (head == null) return null;
             if (head.next == null) return head;
-            //the action we rotated a list is pretty like
+            //The action we rotated a list is pretty like
             // we rotate prayer beads. So we need to form a cycle.
-            // first we need to traverse all nodes to get the length of LinkedList
+            // First we need to traverse all nodes to get the length of LinkedList
             ListNode tail = head;
             int i;
             for (i = 1; tail.next != null; i++) {
@@ -47,7 +48,7 @@ public class ListNode {
             return newHead;
         }
     }
-}
+
 
 
 

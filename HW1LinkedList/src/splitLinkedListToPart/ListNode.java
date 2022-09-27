@@ -16,9 +16,11 @@ public class ListNode {
     ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
+    }
+}
 
 
-        class splitLinkedListToPar {
+        class Solution {
             public ListNode[] splitListToParts(ListNode head, int k) {
                 ListNode[] arr = new ListNode[k];//creat a ListNode array
                 int len = 0;
@@ -35,7 +37,7 @@ public class ListNode {
                         //Firstly,we store the head of sub-LinkedList in each array
                         arr[i] = cur;
                         for (int j = 0; j < n + (modulus > 0 ? 1 : 0); j++) {
-                            prev = cur;//store the position of the tail of sub-LinkedList.
+                            prev = cur;//Store the position of the tail of sub-LinkedList.
                             cur = cur.next;// move our cur node to next for a new loop.
                         }
                         //Lastly,since we already finished the job of traversing a sub-LinkedList,break the connection.
@@ -67,5 +69,4 @@ public class ListNode {
             }
 
         }
-    }
-}
+
