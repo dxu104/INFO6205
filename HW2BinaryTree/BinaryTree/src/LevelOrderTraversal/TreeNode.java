@@ -22,29 +22,25 @@ public class TreeNode {
 
 
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> levels = new ArrayList<List<Integer>>();
-        if (root == null) return levels;
-
+        List<List<Integer>> res= new ArrayList<List<Integer>>();
+        if(root==null) return res;
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
+
         queue.add(root);
-        int level = 0;
-        while ( !queue.isEmpty() ) {
-
-            levels.add(new ArrayList<Integer>());
-
-         
+        while(!queue.isEmpty()){
+            List<Integer> levelList = new ArrayList<>();//这了new ArrayList和LinkedList都可以，只要可以实现add功能就行
             int level_length = queue.size();
-            for(int i = 0; i < level_length; ++i) {
-                TreeNode node = queue.remove();
+            for(int i=0;i<level_length;i++){
+                TreeNode node = queue.poll();
 
-                levels.get(level).add(node.val);
+                levelList.add(node.val);
 
-                if (node.left != null) queue.add(node.left);
-                if (node.right != null) queue.add(node.right);
+                if(node.left!=null) queue.offer(node.left);
+                if(node.right!=null) queue.offer(node.right);
             }
+            res.add(levelList);
 
-            level++;
         }
-        return levels;
+        return res;
     }
 }
