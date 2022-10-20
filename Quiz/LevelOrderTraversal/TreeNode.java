@@ -28,7 +28,7 @@ public class TreeNode {
 
         queue.add(root);
         while(!queue.isEmpty()){
-            List<Integer> levelList = new ArrayList<>();//这了new ArrayList和LinkedList都可以，只要可以实现add功能就行
+            List<Integer> levelList = new ArrayList<>();
             int level_length = queue.size();
             for(int i=0;i<level_length;i++){
                 TreeNode node = queue.poll();
