@@ -18,7 +18,7 @@ class Solution {
             res.add(str);
             return;
         }
-        //
+        //、
         if(left == right){
             getParenthesis(str+"(",left-1,right);
         }else if(left < right){
